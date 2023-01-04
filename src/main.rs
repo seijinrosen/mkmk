@@ -7,6 +7,11 @@ use std::process;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
+    if args.len() == 1 {
+        println!("ヘルプメッセージ");
+        process::exit(0);
+    }
+
     for (i, arg) in args.iter().enumerate() {
         if i == 0 {
             continue;

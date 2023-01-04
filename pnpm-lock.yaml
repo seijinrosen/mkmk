@@ -4,11 +4,13 @@ specifiers:
   cspell: ^6.18.1
   husky: ^8.0.0
   lint-staged: ^13.1.0
+  prettier: 2.8.1
 
 devDependencies:
   cspell: 6.18.1
   husky: 8.0.3
   lint-staged: 13.1.0
+  prettier: 2.8.1
 
 packages:
 
@@ -1150,6 +1152,12 @@ packages:
   /pidtree/0.6.0:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
+    hasBin: true
+    dev: true
+
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+    engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
 

@@ -1,11 +1,4 @@
 {
-  "ignorePaths": [
-    "target/",
-    "pnpm-lock.yaml"
-  ],
-  "words": [
-    "mkmk",
-    "pnpm",
-    "shellcheck"
-  ]
+  "ignorePaths": ["target/", "pnpm-lock.yaml"],
+  "words": ["mkmk", "pnpm", "shellcheck"]
 }

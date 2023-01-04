@@ -20,20 +20,14 @@ fn main() {
         let path = Path::new(arg);
 
         if let Some(parent) = path.parent() {
-            match fs::create_dir_all(parent) {
-                Ok(_) => (),
-                Err(e) => {
-                    println!("mkdir error: {:?} {}", parent, e);
-                    continue;
-                }
+            if let Err(e) = fs::create_dir_all(parent) {
+                println!("mkdir error: {:?} {}", parent, e);
+                continue;
             }
         }
 
-        match File::create(path) {
-            Ok(_) => (),
-            Err(e) => {
-                println!("touch error: {:?} {}", path, e);
-            }
+        if let Err(e) = File::create(path) {
+            println!("touch error: {:?} {}", path, e);
         }
     }
 }

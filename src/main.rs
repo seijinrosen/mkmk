@@ -19,7 +19,7 @@ fn main() {
         }
 
         if let Err(e) = mkmk::run(arg) {
-            eprintln!("error: {}: {}", arg, e);
+            eprintln!("Error: {}", e);
             exit_code = 1;
         }
     }

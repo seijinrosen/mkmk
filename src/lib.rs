@@ -1,18 +1,22 @@
-use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::path::Path;
 
-pub fn run(arg: &String) -> Result<(), Box<dyn Error>> {
+use anyhow::bail;
+use anyhow::Result;
+
+pub fn run(arg: &String) -> Result<()> {
     let path = Path::new(arg);
 
     if let Some(parent) = path.parent() {
-        fs::create_dir_all(parent)?;
-        // eprintln!("mkdir error: {:?} {}", parent, e);
+        if let Err(e) = fs::create_dir_all(parent) {
+            bail!("mkdir: {:?} {}", parent, e);
+        }
     }
 
-    File::create(path)?;
-    // eprintln!("touch error: {:?} {}", path, e);
+    if let Err(e) = File::create(path) {
+        bail!("touch: {:?} {}", path, e);
+    }
 
     Ok(())
 }

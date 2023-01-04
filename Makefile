@@ -1,3 +1,7 @@
+test:
+	cargo check
+	cargo test
+
 init:
 	pnpm install
 

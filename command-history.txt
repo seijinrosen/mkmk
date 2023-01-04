@@ -3,3 +3,4 @@ cd mkmk
 gh repo create
 touch command-history.txt
 pnpm add --save-dev lint-staged
+pnpm dlx husky-init && pnpm install

@@ -12,6 +12,10 @@ fn main() {
         process::exit(0);
     }
 
+    run(args);
+}
+
+fn run(args: Vec<String>) {
     for (i, arg) in args.iter().enumerate() {
         if i == 0 {
             continue;

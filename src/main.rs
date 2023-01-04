@@ -17,7 +17,7 @@ fn main() {
         }
 
         if let Err(e) = mkmk::run(arg) {
-            println!("error: {}: {}", arg, e);
+            eprintln!("error: {}: {}", arg, e);
         }
     }
 }

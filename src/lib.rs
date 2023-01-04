@@ -8,11 +8,11 @@ pub fn run(arg: &String) -> Result<(), Box<dyn Error>> {
 
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent)?;
-        // println!("mkdir error: {:?} {}", parent, e);
+        // eprintln!("mkdir error: {:?} {}", parent, e);
     }
 
     File::create(path)?;
-    // println!("touch error: {:?} {}", path, e);
+    // eprintln!("touch error: {:?} {}", path, e);
 
     Ok(())
 }

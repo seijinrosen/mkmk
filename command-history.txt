@@ -1,0 +1,4 @@
+cargo new mkmk
+cd mkmk
+gh repo create
+touch command-history.txt

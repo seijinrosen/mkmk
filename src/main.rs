@@ -18,18 +18,22 @@ fn main() {
         }
 
         let path = Path::new(arg);
-        let parent = path.parent();
 
-        if let Some(parent) = parent {
-            fs::create_dir_all(parent).unwrap_or_else(|err| {
-                println!("エラー発生: {}", err);
-                process::exit(1);
-            });
+        if let Some(parent) = path.parent() {
+            match fs::create_dir_all(parent) {
+                Ok(_) => (),
+                Err(e) => {
+                    println!("mkdir error: {:?} {}", parent, e);
+                    continue;
+                }
+            }
         }
 
-        File::create(path).unwrap_or_else(|err| {
-            println!("エラー発生: {}", err);
-            process::exit(1);
-        });
+        match File::create(path) {
+            Ok(_) => (),
+            Err(e) => {
+                println!("touch error: {:?} {}", path, e);
+            }
+        }
     }
 }

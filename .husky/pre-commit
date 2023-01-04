@@ -8,4 +8,4 @@ if [ "$CURRENT_BRANCH" = "main" ]; then
     exit 1
 fi
 
-echo "OK"
+pnpm lint-staged

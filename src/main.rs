@@ -11,6 +11,8 @@ fn main() {
         process::exit(0);
     }
 
+    let mut exit_code = 0;
+
     for (i, arg) in args.iter().enumerate() {
         if i == 0 {
             continue;
@@ -18,6 +20,9 @@ fn main() {
 
         if let Err(e) = mkmk::run(arg) {
             eprintln!("error: {}: {}", arg, e);
+            exit_code = 1;
         }
     }
+
+    process::exit(exit_code);
 }

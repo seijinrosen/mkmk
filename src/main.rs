@@ -1,8 +1,6 @@
+extern crate mkmk;
+
 use std::env;
-use std::error::Error;
-use std::fs;
-use std::fs::File;
-use std::path::Path;
 use std::process;
 
 fn main() {
@@ -18,22 +16,8 @@ fn main() {
             continue;
         }
 
-        if let Err(e) = run(arg) {
+        if let Err(e) = mkmk::run(arg) {
             println!("error: {}: {}", arg, e);
         }
     }
-}
-
-fn run(arg: &String) -> Result<(), Box<dyn Error>> {
-    let path = Path::new(arg);
-
-    if let Some(parent) = path.parent() {
-        fs::create_dir_all(parent)?;
-        // println!("mkdir error: {:?} {}", parent, e);
-    }
-
-    File::create(path)?;
-    // println!("touch error: {:?} {}", path, e);
-
-    Ok(())
 }

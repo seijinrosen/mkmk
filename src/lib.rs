@@ -36,4 +36,17 @@ mod tests {
         let result = add(2, 2);
         assert_eq!(result, 4);
     }
+
+    #[test]
+    fn touch_ok() {
+        let arg = String::from("mock_file.txt");
+        let path = Path::new(&arg);
+        assert!(!path.exists());
+        let result = run(&arg).unwrap();
+        assert_eq!(result, ());
+        assert!(path.exists());
+        assert!(path.is_file());
+        fs::remove_file(path).unwrap();
+        assert!(!path.exists());
+    }
 }

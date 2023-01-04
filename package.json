@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "cspell": "^6.18.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "2.8.1"
+  },
+  "scripts": {
+    "cspell": "cspell '**'",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*": "cspell",
+    "**/*": "prettier --check --ignore-unknown"
+  }
+}

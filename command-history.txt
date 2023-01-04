@@ -2,3 +2,7 @@ cargo new mkmk
 cd mkmk
 gh repo create
 touch command-history.txt
+pnpm add --save-dev lint-staged
+pnpm dlx husky-init && pnpm install
+pnpm add --save-dev cspell
+pnpm add --save-dev --save-exact prettier

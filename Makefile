@@ -1,6 +1,7 @@
 test:
 	cargo check
 	cargo test
+	cargo tarpaulin
 
 after-develop-merged:
 	git switch main

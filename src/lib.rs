@@ -32,9 +32,24 @@ mod tests {
         assert!(!path.exists());
         let result = run(&arg).unwrap();
         assert_eq!(result, ());
-        assert!(path.exists());
         assert!(path.is_file());
         fs::remove_file(path).unwrap();
+        assert!(!path.exists());
+    }
+
+    #[test]
+    fn mkdir_ok() {
+        let arg = String::from("mock_dir/mock_file.txt");
+        let path = Path::new(&arg);
+        let parent = path.parent().unwrap();
+        assert!(!parent.exists());
+        assert!(!path.exists());
+        let result = run(&arg).unwrap();
+        assert_eq!(result, ());
+        assert!(parent.is_dir());
+        assert!(path.is_file());
+        fs::remove_dir_all("mock_dir").unwrap();
+        assert!(!parent.exists());
         assert!(!path.exists());
     }
 }

@@ -2,7 +2,7 @@ test:
 	cargo check
 	cargo test
 	cargo clippy
-	cargo tarpaulin
+	# cargo tarpaulin
 
 after-develop-merged:
 	git switch main

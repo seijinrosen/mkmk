@@ -2,6 +2,9 @@
 
 _mkmk_ is `mkdir -p` and `touch`.
 
+[![Crates.io](https://img.shields.io/crates/v/mkmk)](https://crates.io/crates/mkmk)
+[![Crates.io](https://img.shields.io/crates/d/mkmk)](https://crates.io/crates/mkmk)
+
 ## Installation
 
 ```sh

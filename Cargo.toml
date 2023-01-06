@@ -1,6 +1,6 @@
 [package]
 name = "mkmk"
-version = "0.1.0"
+version = "0.1.1"
 description = "`mkdir -p` and `touch`"
 repository = "https://github.com/seijinrosen/mkmk"
 readme = "README.md"

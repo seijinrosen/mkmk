@@ -10,6 +10,10 @@ after-develop-merged:
 	git branch --delete develop
 	git switch --create develop
 
+clean:
+	rm -r node_modules/
+	rm -r target/
+
 init:
 	pnpm install
 

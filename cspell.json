@@ -1,4 +1,12 @@
 {
   "ignorePaths": ["target/", "pnpm-lock.yaml"],
-  "words": ["clippy", "esbenp", "mkmk", "pnpm", "seijinrosen", "shellcheck"]
+  "words": [
+    "clippy",
+    "esbenp",
+    "mkmk",
+    "pnpm",
+    "seijinrosen",
+    "shellcheck",
+    "tempfile"
+  ]
 }

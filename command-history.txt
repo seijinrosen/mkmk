@@ -7,3 +7,4 @@ pnpm dlx husky-init && pnpm install
 pnpm add --save-dev cspell
 pnpm add --save-dev --save-exact prettier
 cargo add clap --features derive
+cargo add --dev tempfile

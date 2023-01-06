@@ -1,6 +1,6 @@
 extern crate mkmk;
 
-use std::process;
+use std::{path::PathBuf, process};
 
 use clap::Parser;
 
@@ -9,16 +9,15 @@ use clap::Parser;
 #[command(version)]
 struct Args {
     /// The path to the file to create
-    paths: Vec<String>,
+    paths: Vec<PathBuf>,
 }
 
 fn main() {
     let args = Args::parse();
-    let path_strings = args.paths;
     let mut exit_code = 0;
 
-    for arg in path_strings {
-        if let Err(e) = mkmk::run(&arg) {
+    for path in args.paths {
+        if let Err(e) = mkmk::run(&path) {
             eprintln!("Error: {}", e);
             exit_code = 1;
         }

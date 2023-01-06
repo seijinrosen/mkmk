@@ -5,9 +5,7 @@ use std::path::Path;
 use anyhow::bail;
 use anyhow::Result;
 
-pub fn run(arg: &String) -> Result<()> {
-    let path = Path::new(arg);
-
+pub fn run(path: &Path) -> Result<()> {
     if let Some(parent) = path.parent() {
         if let Err(e) = fs::create_dir_all(parent) {
             bail!("mkdir: {:?} {}", parent, e);
@@ -27,10 +25,9 @@ mod tests {
 
     #[test]
     fn touch_ok() {
-        let arg = String::from("mock_file.txt");
-        let path = Path::new(&arg);
+        let path = Path::new("mock_file.txt");
         assert!(!path.exists());
-        let result = run(&arg).unwrap();
+        let result = run(path).unwrap();
         assert_eq!(result, ());
         assert!(path.is_file());
         fs::remove_file(path).unwrap();
@@ -39,12 +36,11 @@ mod tests {
 
     #[test]
     fn mkdir_ok() {
-        let arg = String::from("mock_dir/mock_file.txt");
-        let path = Path::new(&arg);
+        let path = Path::new("mock_dir/mock_file.txt");
         let parent = path.parent().unwrap();
         assert!(!parent.exists());
         assert!(!path.exists());
-        let result = run(&arg).unwrap();
+        let result = run(path).unwrap();
         assert_eq!(result, ());
         assert!(parent.is_dir());
         assert!(path.is_file());

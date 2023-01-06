@@ -6,6 +6,7 @@ use clap::Parser;
 
 /// `mkdir -p` and `touch`.
 #[derive(Parser, Debug)]
+#[command(version)]
 struct Args {
     /// The path to the file to create
     paths: Vec<String>,

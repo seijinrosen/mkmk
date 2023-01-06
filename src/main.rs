@@ -4,9 +4,8 @@ use std::{path::PathBuf, process};
 
 use clap::Parser;
 
-/// `mkdir -p` and `touch`.
 #[derive(Parser, Debug)]
-#[command(version)]
+#[command(author, version, about, long_about = None, arg_required_else_help = true)]
 struct Args {
     /// The path to the file to create
     paths: Vec<PathBuf>,

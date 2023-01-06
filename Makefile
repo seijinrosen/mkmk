@@ -1,6 +1,7 @@
 test:
 	cargo check
 	cargo test
+	cargo clippy
 	cargo tarpaulin
 
 after-develop-merged:

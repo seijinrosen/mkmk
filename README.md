@@ -5,7 +5,7 @@ _mkmk_ is `mkdir -p` and `touch`.
 ## Installation
 
 ```sh
-# TODO
+cargo install mkmk
 ```
 
 ## Usage

@@ -8,3 +8,5 @@ pnpm add --save-dev cspell
 pnpm add --save-dev --save-exact prettier
 cargo add clap --features derive
 cargo add --dev tempfile
+cargo login [token]
+cargo publish

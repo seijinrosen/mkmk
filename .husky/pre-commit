@@ -9,3 +9,4 @@ if [ "$CURRENT_BRANCH" = "main" ]; then
 fi
 
 pnpm lint-staged
+cargo test

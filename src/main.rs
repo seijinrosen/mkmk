@@ -1,19 +1,26 @@
-use std::env;
-use std::fs;
-use std::fs::File;
-use std::path::Path;
+extern crate mkmk;
+
+use std::{path::PathBuf, process};
+
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None, arg_required_else_help = true)]
+struct Args {
+    /// The path to the file to create
+    paths: Vec<PathBuf>,
+}
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args = Args::parse();
+    let mut exit_code = 0;
 
-    for (i, arg) in args.iter().enumerate() {
-        if i == 0 {
-            continue;
+    for path in args.paths {
+        if let Err(e) = mkmk::run(&path) {
+            eprintln!("Error: {}", e);
+            exit_code = 1;
         }
-
-        let path = Path::new(arg);
-        let parent = path.parent().unwrap();
-        fs::create_dir_all(parent).unwrap();
-        File::create(path).unwrap();
     }
+
+    process::exit(exit_code);
 }

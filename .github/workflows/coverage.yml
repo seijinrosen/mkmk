@@ -1,0 +1,26 @@
+# https://github.com/codecov/codecov-action
+# https://github.com/xd009642/tarpaulin#github-actions
+
+name: Upload coverage to codecov
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: cargo install cargo-tarpaulin
+      - run: cargo tarpaulin --out Xml
+      - uses: codecov/codecov-action@v3
+        with:
+          files: ./cobertura.xml
+          fail_ci_if_error: true

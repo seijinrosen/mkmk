@@ -1,9 +1,23 @@
 use std::fs;
 use std::fs::File;
 use std::path::Path;
+use std::path::PathBuf;
 
 use anyhow::bail;
 use anyhow::Result;
+
+pub fn run(paths: Vec<PathBuf>) -> i32 {
+    let mut exit_code = 0;
+
+    for path in paths {
+        if let Err(e) = path.mkmk() {
+            eprintln!("Error: {}", e);
+            exit_code = 1;
+        }
+    }
+
+    exit_code
+}
 
 pub trait Mkmk {
     fn mkmk(&self) -> Result<()>;

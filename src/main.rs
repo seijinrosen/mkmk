@@ -1,24 +1,23 @@
 extern crate mkmk;
 
-use std::env;
 use std::process;
 
+use clap::Parser;
+
+/// `mkdir -p` and `touch`.
+#[derive(Parser, Debug)]
+struct Args {
+    /// The path to the file to create
+    paths: Vec<String>,
+}
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() == 1 {
-        println!("ヘルプメッセージ");
-        process::exit(0);
-    }
-
+    let args = Args::parse();
+    let path_strings = args.paths;
     let mut exit_code = 0;
 
-    for (i, arg) in args.iter().enumerate() {
-        if i == 0 {
-            continue;
-        }
-
-        if let Err(e) = mkmk::run(arg) {
+    for arg in path_strings {
+        if let Err(e) = mkmk::run(&arg) {
             eprintln!("Error: {}", e);
             exit_code = 1;
         }

@@ -1,5 +1,3 @@
-extern crate mkmk;
-
 use std::{path::PathBuf, process};
 
 use clap::Parser;

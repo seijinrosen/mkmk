@@ -24,6 +24,20 @@ pub trait Mkmk {
 }
 
 impl Mkmk for Path {
+    /// 親ディレクトリを再帰的に作成した後、空ファイルを作成する。
+    ///
+    /// # Examples
+    ///
+    /// ```ignore
+    /// use std::path::Path;
+    ///
+    /// use mkmk::Mkmk;
+    ///
+    /// Path::new("aaa/bbb/ccc").mkmk().unwrap();
+    /// assert!(Path::new("aaa").is_dir());
+    /// assert!(Path::new("aaa/bbb").is_dir());
+    /// assert!(Path::new("aaa/bbb/ccc").is_file());
+    /// ```
     fn mkmk(&self) -> Result<()> {
         if let Some(parent) = self.parent() {
             if let Err(e) = fs::create_dir_all(parent) {

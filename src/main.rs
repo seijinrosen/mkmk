@@ -1,5 +1,3 @@
-extern crate mkmk;
-
 use std::{path::PathBuf, process};
 
 use clap::Parser;
@@ -13,14 +11,8 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let mut exit_code = 0;
 
-    for path in args.paths {
-        if let Err(e) = mkmk::run(&path) {
-            eprintln!("Error: {}", e);
-            exit_code = 1;
-        }
-    }
+    let exit_code = mkmk::run(args.paths);
 
     process::exit(exit_code);
 }

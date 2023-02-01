@@ -1,22 +1,56 @@
 use std::fs;
 use std::fs::File;
 use std::path::Path;
+use std::path::PathBuf;
 
 use anyhow::bail;
 use anyhow::Result;
 
-pub fn run(path: &Path) -> Result<()> {
-    if let Some(parent) = path.parent() {
-        if let Err(e) = fs::create_dir_all(parent) {
-            bail!("mkdir: {:?} {}", parent, e);
+pub fn run(paths: Vec<PathBuf>) -> i32 {
+    let mut exit_code = 0;
+
+    for path in paths {
+        if let Err(e) = path.mkmk() {
+            eprintln!("Error: {}", e);
+            exit_code = 1;
         }
     }
 
-    if let Err(e) = File::create(path) {
-        bail!("touch: {:?} {}", path, e);
-    }
+    exit_code
+}
 
-    Ok(())
+pub trait Mkmk {
+    fn mkmk(&self) -> Result<()>;
+}
+
+impl Mkmk for Path {
+    /// 親ディレクトリを再帰的に作成した後、空ファイルを作成する。
+    ///
+    /// # Examples
+    ///
+    /// ```ignore
+    /// use std::path::Path;
+    ///
+    /// use mkmk::Mkmk;
+    ///
+    /// Path::new("aaa/bbb/ccc").mkmk().unwrap();
+    /// assert!(Path::new("aaa").is_dir());
+    /// assert!(Path::new("aaa/bbb").is_dir());
+    /// assert!(Path::new("aaa/bbb/ccc").is_file());
+    /// ```
+    fn mkmk(&self) -> Result<()> {
+        if let Some(parent) = self.parent() {
+            if let Err(e) = fs::create_dir_all(parent) {
+                bail!("mkdir: {:?} {}", parent, e);
+            }
+        }
+
+        if let Err(e) = File::create(self) {
+            bail!("touch: {:?} {}", self, e);
+        }
+
+        Ok(())
+    }
 }
 
 #[cfg(test)]
@@ -27,7 +61,7 @@ mod tests {
     fn touch_ok() {
         let path = Path::new("mock_file.txt");
         assert!(!path.exists());
-        let result = run(path).unwrap();
+        let result = path.mkmk().unwrap();
         assert_eq!(result, ());
         assert!(path.is_file());
         fs::remove_file(path).unwrap();
@@ -40,7 +74,7 @@ mod tests {
         let parent = path.parent().unwrap();
         assert!(!parent.exists());
         assert!(!path.exists());
-        let result = run(path).unwrap();
+        let result = path.mkmk().unwrap();
         assert_eq!(result, ());
         assert!(parent.is_dir());
         assert!(path.is_file());

@@ -23,4 +23,4 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           files: ./cobertura.xml
-          fail_ci_if_error: true
+          fail_ci_if_error: false

@@ -14,4 +14,4 @@ anyhow = "1.0"
 clap = { version = "4.3.10", features = ["derive"] }
 
 [dev-dependencies]
-tempfile = "3.5.0"
+tempfile = "3.6.0"

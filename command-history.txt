@@ -10,3 +10,4 @@ cargo add clap --features derive
 cargo add --dev tempfile
 cargo login [token]
 cargo publish
+pnpm update cspell@latest

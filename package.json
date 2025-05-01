@@ -2,7 +2,7 @@
   "devDependencies": {
     "cspell": "^8.19.3",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^15.5.1",
     "prettier": "3.5.3"
   },
   "scripts": {
